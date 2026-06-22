@@ -409,23 +409,27 @@
             <!-- Content -->
             <div class="text-center">
                 <h1 class="hero-heading mb-6">
-                    A little Residents' Day treat, from Heli
+                    One free froyo cup for Residents' Day
                 </h1>
 
                 <p class="subheading mb-6">
-                    We're celebrating Residents' Day with one free froyo cup per apartment.
-                </p>
-                <p class="subheading mb-6">
-                    Claim your code below and we'll send it on <span class="highlight">June 25th</span>.
+                    Our gift to you. Come back <span class="highlight">June 25th</span> to claim your coupon code.
                 </p>
 
-                <button class="btn-primary mb-6" onclick="openClaimModal()" style="font-size: 18px; padding: 20px 40px;">
-                    Claim My Free Cup
-                </button>
+                <div id="claimButtonContainer">
+                    <button class="btn-primary mb-6" onclick="openClaimModal()" style="font-size: 18px; padding: 20px 40px;">
+                        Claim My Free Cup
+                    </button>
+                    <p style="font-size: 12px; color: #999; line-height: 1.5; margin-bottom: 30px;">
+                        Limited to one cup per apartment.
+                    </p>
+                </div>
 
-                <p style="font-size: 12px; color: #999; line-height: 1.5; margin-bottom: 30px;">
-                    Limited to one cup per apartment.
-                </p>
+                <div id="comingSoonContainer" style="display: none; margin-bottom: 30px;">
+                    <p style="font-size: 13px; color: #999; line-height: 1.6;">
+                        *Limited to one free cup per apartment.
+                    </p>
+                </div>
 
                 <div class="button-group">
                     <button class="btn-secondary" onclick="window.open('https://instagram.com/helifroyo', '_blank')">
@@ -554,6 +558,22 @@
     </div>
 
     <script>
+        // Check if claims are open (June 25th or later)
+        const CLAIMS_OPEN_DATE = new Date(2026, 5, 25); // June 25, 2026 (month is 0-indexed)
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        const isClaimsOpen = today >= CLAIMS_OPEN_DATE;
+
+        // Show/hide appropriate content based on date
+        if (isClaimsOpen) {
+            document.getElementById('claimButtonContainer').style.display = 'block';
+            document.getElementById('comingSoonContainer').style.display = 'none';
+        } else {
+            document.getElementById('claimButtonContainer').style.display = 'none';
+            document.getElementById('comingSoonContainer').style.display = 'block';
+        }
+
         // Google Forms - Claims Form
         const CLAIM_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScuJeNz5xwPDkWX9hBqFyPaBV0wCf5IxqwB7SBuXdMpHwwGRg/formResponse';
 
