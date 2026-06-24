@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claim Your Free Heli Cup - Residents' Day</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        h1, h2, h3, .heading {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .striped-bg {
+            background-image: url('../striped-bg.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: repeat;
+        }
+
+        .btn-primary {
+            background-color: #1e3a4c;
+            color: white;
+            padding: 18px 40px;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .btn-primary:hover {
+            background-color: #2a4f63;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(30, 58, 76, 0.3);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: #1e3a4c;
+            padding: 14px 32px;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 2px solid #1e3a4c;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-radius: 4px;
+            width: 100%;
+        }
+
+        .btn-secondary:hover {
+            background-color: #1e3a4c;
+            color: white;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 50;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s;
+        }
+
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes popIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 40px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.4s ease-out;
+        }
+
+        .thank-you-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1000;
+            animation: popIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: none !important;
+        }
+
+        .thank-you-popup.show {
+            display: flex !important;
+        }
+
+        .thank-you-card {
+            background: linear-gradient(135deg, #1e3a4c 0%, #2a4f63 100%);
+            color: white;
+            padding: 50px;
+            border-radius: 16px;
+            text-align: center;
+            max-width: 400px;
+            box-shadow: 0 30px 80px rgba(30, 58, 76, 0.4);
+        }
+
+        .thank-you-card h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .thank-you-card p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .thank-you-emoji {
+            font-size: 60px;
+            margin: 20px 0;
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #1e3a4c;
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #1e3a4c;
+            box-shadow: 0 0 0 3px rgba(30, 58, 76, 0.1);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-top: 2px;
+            cursor: pointer;
+        }
+
+        .checkbox-group label {
+            margin: 0;
+            font-size: 13px;
+            line-height: 1.5;
+            cursor: pointer;
+        }
+
+        .star-rating {
+            display: flex;
+            gap: 15px;
+            font-size: 40px;
+            margin: 20px 0;
+        }
+
+        .star-rating input {
+            display: none;
+        }
+
+        .star-rating label {
+            cursor: pointer;
+            color: #ccc;
+            transition: color 0.2s;
+            margin: 0;
+        }
+
+        .star-rating label:hover,
+        .star-rating input:checked + label {
+            color: #ffc107;
+        }
+
+        .modal-close {
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            color: #aaa;
+            cursor: pointer;
+            border: none;
+            background: none;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            color: #000;
+        }
+
+        .modal-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 32px;
+            color: #1e3a4c;
+            margin: 0 0 20px 0;
+            clear: both;
+        }
+
+        .button-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .button-group.full {
+            grid-template-columns: 1fr;
+        }
+
+        @media (max-width: 640px) {
+            .button-group {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                padding: 30px 20px;
+                width: 95%;
+            }
+
+            .thank-you-card {
+                padding: 20px 16px !important;
+                max-width: 85vw !important;
+                width: 85vw;
+            }
+
+            .thank-you-card h2 {
+                font-size: 26px !important;
+                margin-bottom: 12px !important;
+            }
+
+            .thank-you-card p {
+                font-size: 13px !important;
+                line-height: 1.4 !important;
+                margin-bottom: 10px !important;
+            }
+
+            .thank-you-emoji {
+                font-size: 44px !important;
+                margin: 10px 0 !important;
+            }
+
+            .thank-you-card .button-group {
+                margin-top: 15px !important;
+                gap: 8px !important;
+            }
+
+            .thank-you-card .btn-secondary {
+                padding: 10px 16px !important;
+                font-size: 11px !important;
+            }
+        }
+
+        .hero-heading {
+            font-size: 42px;
+            color: #1e3a4c;
+            font-weight: 400;
+            line-height: 1.2;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .subheading {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .highlight {
+            color: #8b6f47;
+            font-weight: 600;
+        }
+
+        .restrictions {
+            background-color: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-size: 13px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .restrictions strong {
+            color: #1e3a4c;
+        }
+
+        .content-box {
+            background-color: #f9f7f3;
+            border-radius: 16px;
+            padding: 30px 40px 50px 40px;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: -10px;
+            width: 100%;
+        }
+
+        .logo-container img {
+            height: auto;
+            max-width: 100%;
+            max-height: 160px;
+            display: block;
+            object-fit: contain;
+        }
+
+        @media (max-width: 640px) {
+            .content-box {
+                padding: 40px 25px;
+                border-radius: 12px;
+            }
+
+            .logo-container {
+                margin-bottom: 30px;
+            }
+
+            .logo-container img {
+                height: 100px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Main Section -->
+    <section class="striped-bg py-16 px-4 sm:py-24 sm:px-0">
+        <div class="content-box">
+            <!-- Logo -->
+            <div class="logo-container">
+                <img src="../logo.png" alt="Heli">
+            </div>
+
+            <!-- Content -->
+            <div class="text-center">
+                <h1 class="hero-heading mb-6">
+                    One free froyo cup for Residents' Day
+                </h1>
+
+                <p class="subheading mb-6">
+                    Our gift to you. Come back <span class="highlight">June 25th</span> to claim your coupon code.
+                </p>
+
+                <div id="claimButtonContainer">
+                    <button class="btn-primary mb-6" onclick="openClaimModal()" style="font-size: 18px; padding: 20px 40px;">
+                        Claim My Free Cup
+                    </button>
+                    <p style="font-size: 12px; color: #999; line-height: 1.5; margin-bottom: 30px;">
+                        Limited to one cup per apartment.
+                    </p>
+                </div>
+
+                <div id="comingSoonContainer" style="display: none; margin-bottom: 30px;">
+                    <p style="font-size: 13px; color: #999; line-height: 1.6;">
+                        *Limited to one free cup per apartment.
+                    </p>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn-secondary" onclick="window.open('https://instagram.com/helifroyo', '_blank')">
+                        <i class="fab fa-instagram"></i> Follow @helifroyo
+                    </button>
+                    <button class="btn-secondary" onclick="openFeedbackModal()">
+                        💬 Send Feedback
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Claim Cup Modal -->
+    <div id="claimModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeClaimModal()">&times;</button>
+            <h2 class="modal-title">Free Froyo Cup On Us!</h2>
+            <p class="subheading" style="margin-bottom: 25px; font-size: 14px;">Enter your details below so we can reserve your Residents' Day coupon code.</p>
+            <form id="claimForm" onsubmit="handleClaimSubmit(event)">
+                <div class="form-group">
+                    <label for="name">Name *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="apartment">Apartment Number *</label>
+                    <input type="text" id="apartment" name="apartment" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567">
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="consent" name="consent" required>
+                    <label for="consent">
+                        Yes, send me my coupon code and future Heli updates by email or text.
+                        <span style="display: block; font-style: italic; color: #999; font-size: 12px; margin-top: 5px;">You can opt out anytime. Your code will be valid for one free cup only.</span>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-primary">Reserve My Free Cup</button>
+
+                <p style="font-size: 12px; color: #999; line-height: 1.5; margin-top: 20px;">
+                    Limited to one free cup per apartment. Coupon codes will be sent on June 25th and will be valid for one week.
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Feedback Modal -->
+    <div id="feedbackModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeFeedbackModal()">&times;</button>
+            <h2 class="modal-title">Help Us Get Better</h2>
+            <form id="feedbackForm" onsubmit="handleFeedbackSubmit(event)">
+                <div class="form-group">
+                    <label>How would you rate Heli? *</label>
+                    <div class="star-rating" id="starRating">
+                        <input type="radio" id="star5" name="rating" value="5" required>
+                        <label for="star5">★</label>
+                        <input type="radio" id="star4" name="rating" value="4">
+                        <label for="star4">★</label>
+                        <input type="radio" id="star3" name="rating" value="3">
+                        <label for="star3">★</label>
+                        <input type="radio" id="star2" name="rating" value="2">
+                        <label for="star2">★</label>
+                        <input type="radio" id="star1" name="rating" value="1">
+                        <label for="star1">★</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="comment">Your Feedback</label>
+                    <textarea id="comment" name="comment" rows="4" placeholder="What did you love? What could we improve?"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="feedbackEmail">Email *</label>
+                    <input type="email" id="feedbackEmail" name="feedbackEmail" required>
+                </div>
+
+                <button type="submit" class="btn-primary">Send Feedback</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Thank You Popup - Claim -->
+    <div id="thankYouPopup" class="thank-you-popup">
+        <div class="thank-you-card">
+            <span class="thank-you-emoji">🎉</span>
+            <h2>You're on the list</h2>
+            <p>Your free Heli cup has been reserved.</p>
+            <p style="font-size: 14px; margin-top: 20px; line-height: 1.6;">
+                We'll send your coupon code on Residents' Day, June 25th. Once you receive it, enter the code at the Heli machine to enjoy your free cup.
+            </p>
+            <p style="font-size: 14px; margin-top: 15px;">
+                See you soon by the machine.
+            </p>
+            <div class="button-group" style="margin-top: 30px; gap: 10px;">
+                <button class="btn-secondary" style="background-color: rgba(255,255,255,0.2); color: white; border-color: white;" onclick="window.open('https://instagram.com/helifroyo', '_blank')">
+                    <i class="fab fa-instagram"></i> Follow @helifroyo
+                </button>
+                <button class="btn-secondary" style="background-color: rgba(255,255,255,0.2); color: white; border-color: white;" onclick="openFeedbackModal()">
+                    💬 Leave Feedback
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Thank You Popup - Feedback -->
+    <div id="feedbackThankYouPopup" class="thank-you-popup">
+        <div class="thank-you-card">
+            <span class="thank-you-emoji">❤️</span>
+            <h2>Thank You!</h2>
+            <p>Your feedback means everything to us.</p>
+            <p>It's how we bring you the best Greek frozen yogurt, every time.</p>
+        </div>
+    </div>
+
+    <script>
+        // TEST PAGE — date gate disabled, form always open
+        const isClaimsOpen = true;
+
+        // Show/hide appropriate content based on date
+        if (isClaimsOpen) {
+            document.getElementById('claimButtonContainer').style.display = 'block';
+            document.getElementById('comingSoonContainer').style.display = 'none';
+        } else {
+            document.getElementById('claimButtonContainer').style.display = 'none';
+            document.getElementById('comingSoonContainer').style.display = 'block';
+        }
+
+        // Google Forms - Claims Form
+        const CLAIM_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScuJeNz5xwPDkWX9hBqFyPaBV0wCf5IxqwB7SBuXdMpHwwGRg/formResponse';
+
+        // Google Forms - Feedback Form
+        const FEEDBACK_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfdZE4dZcW2EuP_e2PwzAIAOdNU1X1fu0-jY1BZ8DWP_BuUoQ/formResponse';
+
+        // Modal Functions
+        function openClaimModal() {
+            document.getElementById('claimModal').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeClaimModal() {
+            document.getElementById('claimModal').classList.remove('show');
+            document.body.style.overflow = 'auto';
+            document.getElementById('claimForm').reset();
+        }
+
+        function openFeedbackModal() {
+            document.getElementById('feedbackModal').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeFeedbackModal() {
+            document.getElementById('feedbackModal').classList.remove('show');
+            document.body.style.overflow = 'auto';
+            document.getElementById('feedbackForm').reset();
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            let claimModal = document.getElementById('claimModal');
+            let feedbackModal = document.getElementById('feedbackModal');
+
+            if (event.target == claimModal) {
+                closeClaimModal();
+            }
+            if (event.target == feedbackModal) {
+                closeFeedbackModal();
+            }
+        }
+
+        // Form Submissions
+        function handleClaimSubmit(event) {
+            event.preventDefault();
+
+            const formData = new FormData(document.getElementById('claimForm'));
+            const data = {
+                'entry.876818892': formData.get('name'),
+                'entry.1240160696': formData.get('apartment'),
+                'entry.2127206558': formData.get('email'),
+                'entry.385193803': formData.get('phone') || '',
+                'entry.2032772615': formData.get('consent') ? 'Yes' : 'No'
+            };
+
+            // Send to Google Sheets via fetch
+            fetch(CLAIM_FORM_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: new URLSearchParams(data)
+            }).then(() => {
+                showThankYouPopup('thankYouPopup', 'claimModal');
+            }).catch(error => {
+                console.log('Data submitted (cors mode):', data);
+                showThankYouPopup('thankYouPopup', 'claimModal');
+            });
+        }
+
+        function handleFeedbackSubmit(event) {
+            event.preventDefault();
+
+            const formData = new FormData(document.getElementById('feedbackForm'));
+            const data = {
+                'entry.1386650122': formData.get('rating'),
+                'entry.588368669': formData.get('comment') || '',
+                'entry.1476033335': formData.get('feedbackEmail')
+            };
+
+            fetch(FEEDBACK_FORM_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: new URLSearchParams(data)
+            }).then(response => {
+                showThankYouPopup('feedbackThankYouPopup', 'feedbackModal');
+            }).catch(error => {
+                console.log('Feedback submission error:', error);
+                showThankYouPopup('feedbackThankYouPopup', 'feedbackModal');
+            });
+        }
+
+        function showThankYouPopup(popupId, modalToClose) {
+            // Close the form modal
+            document.getElementById(modalToClose).classList.remove('show');
+            document.body.style.overflow = 'auto';
+
+            // Show thank you popup
+            const popup = document.getElementById(popupId);
+            popup.classList.add('show');
+
+            // Auto-hide after 8 seconds
+            setTimeout(() => {
+                popup.classList.remove('show');
+
+                // Reset forms
+                if (modalToClose === 'claimModal') {
+                    document.getElementById('claimForm').reset();
+                } else {
+                    document.getElementById('feedbackForm').reset();
+                }
+            }, 8000);
+        }
+
+        // Star rating interaction
+        const starLabels = document.querySelectorAll('#starRating label');
+        starLabels.forEach(label => {
+            label.addEventListener('click', function() {
+                // Visual feedback
+            });
+        });
+    </script>
+</body>
+</html>
