@@ -1,9 +1,1264 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-    <meta http-equiv="refresh" content="0; url='/gio_helifrozenyogurt/gio/'">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Heli Frozen Yogurt | Premium self-serve frozen yogurt for modern locations</title>
+  <meta name="description" content="Heli places premium self-serve Greek frozen yogurt machines in residential buildings, hotels, campuses, offices, and high-traffic locations." />
+  <meta name="theme-color" content="#1B3A6B" />
+  <meta property="og:title" content="Heli Frozen Yogurt" />
+  <meta property="og:description" content="A premium self-serve Greek frozen yogurt amenity for modern locations." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #173867;
+      --navy-deep: #0f284d;
+      --blue: #c8d8e8;
+      --blue-soft: #e9f3fc;
+      --cream: #fbf7ef;
+      --cream-strong: #f4eadc;
+      --berry: #b87083;
+      --berry-dark: #8d4e62;
+      --ink: #1c2d45;
+      --muted: #637188;
+      --white: #ffffff;
+      --shadow: 0 24px 70px rgba(23, 56, 103, 0.15);
+      --radius-lg: 34px;
+      --radius-md: 22px;
+      --radius-sm: 16px;
+      --max: 1160px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background-color: var(--blue-soft);
+      background-image: linear-gradient(rgba(255,255,255,.34), rgba(255,255,255,.34)), url("assets/heli-stripes.png");
+      background-size: 640px auto;
+      background-attachment: fixed;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .page-shell {
+      width: min(var(--max), calc(100% - 38px));
+      margin: 0 auto;
+    }
+
+    .nav-wrap {
+      position: sticky;
+      top: 14px;
+      z-index: 20;
+      padding: 14px 0 0;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      border: 1px solid rgba(23, 56, 103, .11);
+      border-radius: 999px;
+      padding: 10px 12px 10px 18px;
+      background: rgba(251, 247, 239, .88);
+      box-shadow: 0 18px 50px rgba(23, 56, 103, .11);
+      backdrop-filter: blur(16px);
+    }
+
+    .brand-lockup {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 180px;
+    }
+
+    .brand-logo {
+      width: 86px;
+      height: auto;
+    }
+
+    .brand-subtext {
+      display: block;
+      font-size: 9px;
+      letter-spacing: .22em;
+      font-weight: 600;
+      color: var(--navy);
+      text-transform: uppercase;
+      margin-top: -3px;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--navy-deep);
+      font-weight: 600;
+    }
+
+    .nav-links a {
+      opacity: .78;
+      transition: opacity .2s ease;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      padding: 13px 19px;
+      min-height: 48px;
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-weight: 700;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button-primary {
+      color: var(--white);
+      background: var(--navy);
+      box-shadow: 0 14px 34px rgba(23, 56, 103, .22);
+    }
+
+    .button-primary:hover {
+      background: var(--navy-deep);
+    }
+
+    .button-secondary {
+      color: var(--navy);
+      background: rgba(255,255,255,.72);
+      border-color: rgba(23, 56, 103, .16);
+    }
+
+    .button-berry {
+      color: var(--white);
+      background: var(--berry);
+      box-shadow: 0 14px 34px rgba(184, 112, 131, .25);
+    }
+
+    .button-berry:hover {
+      background: var(--berry-dark);
+    }
+
+    .hero {
+      position: relative;
+      padding: 92px 0 54px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(340px, .95fr);
+      gap: 40px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 22px;
+      padding: 8px 14px;
+      border: 1px solid rgba(184,112,131,.28);
+      border-radius: 999px;
+      background: rgba(255,255,255,.55);
+      color: var(--berry-dark);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--berry);
+      box-shadow: 0 0 0 6px rgba(184,112,131,.12);
+    }
+
+    h1, h2, h3 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      color: var(--navy);
+      line-height: .96;
+      margin: 0;
+      font-weight: 600;
+    }
+
+    h1 {
+      max-width: 720px;
+      font-size: clamp(54px, 8vw, 94px);
+      letter-spacing: -.04em;
+    }
+
+    .hero-copy {
+      max-width: 640px;
+      margin: 24px 0 0;
+      color: #3e4d64;
+      font-size: clamp(17px, 2vw, 20px);
+      line-height: 1.75;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 34px;
+    }
+
+    .hero-proof {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+      color: var(--navy);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .proof-chip {
+      padding: 9px 13px;
+      border: 1px solid rgba(23, 56, 103, .13);
+      border-radius: 999px;
+      background: rgba(255,255,255,.55);
+    }
+
+    .experience-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 600px;
+      border-radius: 42px;
+      background: linear-gradient(145deg, rgba(255,255,255,.72), rgba(251,247,239,.94));
+      border: 1px solid rgba(23, 56, 103, .11);
+      box-shadow: var(--shadow);
+      padding: 30px;
+    }
+
+    .experience-card::before {
+      content: "";
+      position: absolute;
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(200,216,232,.95), rgba(200,216,232,0) 70%);
+      right: -120px;
+      top: -120px;
+    }
+
+    .experience-card::after {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(184,112,131,.2), rgba(184,112,131,0) 68%);
+      left: -80px;
+      bottom: -70px;
+    }
+
+    .mini-logo-card {
+      position: relative;
+      z-index: 2;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1px;
+      padding: 15px 18px 12px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.74);
+      border: 1px solid rgba(23,56,103,.1);
+      box-shadow: 0 18px 42px rgba(23,56,103,.09);
+    }
+
+    .mini-logo-card img {
+      width: 112px;
+    }
+
+    .mini-logo-card span {
+      color: var(--navy);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+    }
+
+    .machine-scene {
+      position: absolute;
+      inset: 94px 25px 30px;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 150px;
+      align-items: end;
+      gap: 10px;
+    }
+
+    .machine {
+      position: relative;
+      width: min(310px, 84%);
+      height: 410px;
+      margin-left: 20px;
+      border-radius: 36px 36px 28px 28px;
+      background: linear-gradient(160deg, #ffffff 0%, #f4f9fd 58%, #edf5fb 100%);
+      border: 1px solid rgba(23,56,103,.18);
+      box-shadow: 0 30px 80px rgba(23,56,103,.18);
+    }
+
+    .machine-top {
+      position: absolute;
+      left: 22px;
+      right: 22px;
+      top: 22px;
+      height: 84px;
+      border-radius: 24px;
+      background: var(--cream);
+      border: 1px solid rgba(23,56,103,.1);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .machine-top img {
+      width: 132px;
+    }
+
+    .machine-window {
+      position: absolute;
+      left: 34px;
+      top: 132px;
+      width: 132px;
+      height: 168px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(200,216,232,.8), rgba(255,255,255,.9));
+      border: 1px solid rgba(23,56,103,.14);
+      overflow: hidden;
+    }
+
+    .machine-window::before, .machine-window::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,.55);
+    }
+
+    .machine-window::before {
+      width: 92px;
+      height: 92px;
+      left: 16px;
+      top: 20px;
+    }
+
+    .machine-window::after {
+      width: 120px;
+      height: 72px;
+      left: 8px;
+      bottom: 14px;
+      border-radius: 42px 42px 22px 22px;
+    }
+
+    .pay-panel {
+      position: absolute;
+      right: 32px;
+      top: 142px;
+      width: 78px;
+      height: 142px;
+      border-radius: 18px;
+      background: var(--navy);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.1);
+    }
+
+    .pay-panel::before {
+      content: "tap";
+      position: absolute;
+      left: 13px;
+      right: 13px;
+      top: 18px;
+      padding: 8px 0;
+      border-radius: 9px;
+      background: rgba(255,255,255,.14);
+      color: rgba(255,255,255,.86);
+      font-size: 10px;
+      letter-spacing: .12em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .pay-panel::after {
+      content: "";
+      position: absolute;
+      width: 42px;
+      height: 42px;
+      left: 18px;
+      bottom: 20px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.36);
+    }
+
+    .machine-base {
+      position: absolute;
+      left: 46px;
+      right: 46px;
+      bottom: 30px;
+      height: 58px;
+      border-radius: 20px;
+      background: rgba(23,56,103,.08);
+      border: 1px solid rgba(23,56,103,.08);
+    }
+
+    .cup {
+      position: relative;
+      width: 138px;
+      height: 146px;
+      margin: 0 auto 74px;
+      filter: drop-shadow(0 22px 22px rgba(23,56,103,.16));
+    }
+
+    .cup .swirl {
+      position: absolute;
+      left: 24px;
+      top: 0;
+      width: 90px;
+      height: 78px;
+      border-radius: 50% 50% 42% 42%;
+      background: #fff8ef;
+      box-shadow: inset -14px -11px 0 rgba(200,216,232,.22);
+      transform: rotate(-4deg);
+    }
+
+    .cup .swirl::before,
+    .cup .swirl::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      background: #fff8ef;
+      box-shadow: inset -10px -9px 0 rgba(200,216,232,.19);
+    }
+
+    .cup .swirl::before {
+      width: 68px;
+      height: 54px;
+      left: 12px;
+      top: -28px;
+    }
+
+    .cup .swirl::after {
+      width: 42px;
+      height: 36px;
+      left: 25px;
+      top: -52px;
+    }
+
+    .cup .bowl {
+      position: absolute;
+      left: 8px;
+      bottom: 0;
+      width: 122px;
+      height: 92px;
+      background: linear-gradient(180deg, #ffffff, #f5f8fb);
+      border: 2px solid rgba(23,56,103,.16);
+      border-radius: 20px 20px 42px 42px;
+      clip-path: polygon(6% 0, 94% 0, 80% 100%, 20% 100%);
+    }
+
+    .cup .label {
+      position: absolute;
+      left: 34px;
+      bottom: 32px;
+      width: 68px;
+      height: 26px;
+      border-radius: 999px;
+      background: rgba(251,247,239,.9);
+      display: grid;
+      place-items: center;
+      color: var(--navy);
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 23px;
+      line-height: 1;
+    }
+
+    .floating-note {
+      position: absolute;
+      z-index: 3;
+      border-radius: 20px;
+      background: rgba(255,255,255,.82);
+      border: 1px solid rgba(23,56,103,.1);
+      box-shadow: 0 18px 42px rgba(23,56,103,.11);
+      color: var(--navy);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 14px 16px;
+    }
+
+    .note-one {
+      right: 28px;
+      top: 142px;
+    }
+
+    .note-two {
+      left: 28px;
+      bottom: 46px;
+    }
+
+    section {
+      padding: 58px 0;
+    }
+
+    .section-card {
+      border-radius: var(--radius-lg);
+      background: rgba(251,247,239,.86);
+      border: 1px solid rgba(23, 56, 103, .11);
+      box-shadow: var(--shadow);
+      padding: clamp(26px, 5vw, 56px);
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: 1fr minmax(280px, 460px);
+      gap: 30px;
+      align-items: end;
+      margin-bottom: 34px;
+    }
+
+    h2 {
+      font-size: clamp(42px, 6vw, 70px);
+      letter-spacing: -.035em;
+    }
+
+    .section-kicker {
+      color: var(--berry-dark);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      margin: 0 0 13px;
+    }
+
+    .section-intro {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .feature-card {
+      min-height: 230px;
+      padding: 24px;
+      border-radius: 26px;
+      background: rgba(255,255,255,.68);
+      border: 1px solid rgba(23, 56, 103, .09);
+    }
+
+    .icon-badge {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      border-radius: 15px;
+      background: rgba(200,216,232,.6);
+      color: var(--navy);
+      font-size: 20px;
+      margin-bottom: 22px;
+    }
+
+    h3 {
+      font-size: 30px;
+      letter-spacing: -.02em;
+      margin-bottom: 11px;
+    }
+
+    .feature-card p,
+    .step-card p,
+    .place-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .blue-panel {
+      border-radius: var(--radius-lg);
+      background: linear-gradient(160deg, rgba(23,56,103,.96), rgba(15,40,77,.96));
+      color: white;
+      padding: clamp(28px, 4.5vw, 46px);
+      position: relative;
+      overflow: hidden;
+      min-height: 420px;
+    }
+
+    .blue-panel::after {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      right: -80px;
+      top: -80px;
+      border-radius: 50%;
+      background: rgba(200,216,232,.15);
+    }
+
+    .blue-panel h2 {
+      color: white;
+      position: relative;
+      z-index: 1;
+    }
+
+    .blue-panel p {
+      position: relative;
+      z-index: 1;
+      color: rgba(255,255,255,.76);
+      margin: 22px 0 0;
+      font-size: 16px;
+    }
+
+    .check-list {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 14px;
+      padding: 0;
+      list-style: none;
+      margin: 28px 0 0;
+    }
+
+    .check-list li {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 12px;
+      align-items: start;
+      color: rgba(255,255,255,.88);
+      font-size: 14px;
+    }
+
+    .check-list li::before {
+      content: "✓";
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: white;
+      background: rgba(184,112,131,.88);
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .step-card {
+      border-radius: 26px;
+      background: rgba(255,255,255,.74);
+      border: 1px solid rgba(23,56,103,.09);
+      padding: 24px;
+      min-height: 198px;
+    }
+
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      color: white;
+      background: var(--berry);
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 17px;
+    }
+
+    .places-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 12px;
+    }
+
+    .place-card {
+      padding: 18px 16px;
+      min-height: 150px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.68);
+      border: 1px solid rgba(23,56,103,.09);
+    }
+
+    .place-card strong {
+      display: block;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      color: var(--navy);
+      font-size: 25px;
+      line-height: 1;
+      margin-bottom: 9px;
+      font-weight: 600;
+    }
+
+    .quote-strip {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 20px;
+      align-items: center;
+      padding: 28px;
+      border-radius: 30px;
+      background: rgba(255,255,255,.66);
+      border: 1px solid rgba(23,56,103,.09);
+      margin-top: 22px;
+    }
+
+    .quote-strip p {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(31px, 4vw, 48px);
+      color: var(--navy);
+      line-height: 1;
+      letter-spacing: -.03em;
+      margin: 0;
+    }
+
+    .quote-strip span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .cta {
+      padding: 70px 0 90px;
+    }
+
+    .cta-card {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 30px;
+      align-items: center;
+      border-radius: 44px;
+      padding: clamp(30px, 6vw, 64px);
+      background: linear-gradient(135deg, rgba(251,247,239,.94), rgba(255,255,255,.76));
+      border: 1px solid rgba(23,56,103,.11);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .cta-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 90% 12%, rgba(184,112,131,.18), transparent 34%), radial-gradient(circle at 10% 90%, rgba(200,216,232,.5), transparent 30%);
+      pointer-events: none;
+    }
+
+    .cta-content, .inquiry-card {
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-card h2 {
+      max-width: 680px;
+    }
+
+    .cta-card p {
+      max-width: 620px;
+      color: var(--muted);
+      margin: 22px 0 0;
+      font-size: 16px;
+    }
+
+    .inquiry-card {
+      border-radius: 28px;
+      padding: 26px;
+      background: rgba(255,255,255,.74);
+      border: 1px solid rgba(23,56,103,.09);
+    }
+
+    .inquiry-card h3 {
+      margin-bottom: 14px;
+    }
+
+    .inquiry-list {
+      display: grid;
+      gap: 11px;
+      padding: 0;
+      margin: 0 0 22px;
+      list-style: none;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .inquiry-list li {
+      display: grid;
+      grid-template-columns: 20px 1fr;
+      gap: 8px;
+    }
+
+    .inquiry-list li::before {
+      content: "•";
+      color: var(--berry);
+      font-weight: 800;
+      font-size: 22px;
+      line-height: .8;
+    }
+
+    footer {
+      padding: 34px 0 50px;
+      color: var(--navy);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      border-top: 1px solid rgba(23,56,103,.13);
+      padding-top: 22px;
+      font-size: 12px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .footer-logo {
+      width: 72px;
+    }
+
+    @media (max-width: 980px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 64px;
+      }
+
+      .hero-grid,
+      .section-heading,
+      .split,
+      .quote-strip,
+      .cta-card {
+        grid-template-columns: 1fr;
+      }
+
+      .experience-card {
+        min-height: 520px;
+      }
+
+      .machine-scene {
+        inset: 82px 20px 28px;
+      }
+
+      .machine {
+        width: 270px;
+        height: 370px;
+        margin-left: 0;
+      }
+
+      .cards-grid,
+      .steps-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .places-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 680px) {
+      body {
+        background-size: 480px auto;
+        background-attachment: scroll;
+      }
+
+      .page-shell {
+        width: min(100% - 24px, var(--max));
+      }
+
+      .nav {
+        padding: 10px 10px 10px 14px;
+      }
+
+      .brand-subtext {
+        display: none;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .nav .button {
+        width: auto;
+        min-height: 42px;
+        padding: 10px 14px;
+        font-size: 10px;
+      }
+
+      .brand-logo {
+        width: 78px;
+      }
+
+      .hero {
+        padding: 48px 0 30px;
+      }
+
+      .hero-actions {
+        align-items: stretch;
+      }
+
+      .experience-card {
+        min-height: 430px;
+        padding: 20px;
+        border-radius: 30px;
+      }
+
+      .mini-logo-card {
+        padding: 12px 13px 10px;
+      }
+
+      .mini-logo-card img {
+        width: 92px;
+      }
+
+      .mini-logo-card span {
+        font-size: 7px;
+      }
+
+      .machine-scene {
+        inset: 78px 16px 24px;
+        grid-template-columns: 1fr 92px;
+      }
+
+      .machine {
+        width: 220px;
+        height: 310px;
+        border-radius: 28px;
+      }
+
+      .machine-top {
+        left: 16px;
+        right: 16px;
+        top: 16px;
+        height: 66px;
+        border-radius: 18px;
+      }
+
+      .machine-top img {
+        width: 104px;
+      }
+
+      .machine-window {
+        left: 24px;
+        top: 104px;
+        width: 100px;
+        height: 132px;
+        border-radius: 18px;
+      }
+
+      .pay-panel {
+        width: 58px;
+        height: 116px;
+        right: 23px;
+        top: 110px;
+      }
+
+      .pay-panel::after {
+        width: 32px;
+        height: 32px;
+        left: 13px;
+      }
+
+      .machine-base {
+        left: 36px;
+        right: 36px;
+        bottom: 22px;
+        height: 42px;
+        border-radius: 15px;
+      }
+
+      .cup {
+        width: 96px;
+        transform: scale(.78);
+        transform-origin: bottom center;
+        margin-bottom: 45px;
+      }
+
+      .floating-note {
+        display: none;
+      }
+
+      section {
+        padding: 36px 0;
+      }
+
+      .section-card {
+        border-radius: 28px;
+      }
+
+      .cards-grid,
+      .steps-grid,
+      .places-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-card,
+      .step-card,
+      .place-card {
+        min-height: auto;
+      }
+
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
 <body>
-    <p>Redirecting to <a href="/gio_helifrozenyogurt/gio/">helifrozenyogurt.com/gio</a>...</p>
+  <header class="nav-wrap">
+    <div class="page-shell">
+      <nav class="nav" aria-label="Primary navigation">
+        <a class="brand-lockup" href="#top" aria-label="Heli Frozen Yogurt home">
+          <div>
+            <img class="brand-logo" src="assets/heli-logo.png" alt="Heli" />
+            <span class="brand-subtext">Greek · Frozen · Yogurt</span>
+          </div>
+        </a>
+        <div class="nav-links" aria-label="Page sections">
+          <a href="#why">Why Heli</a>
+          <a href="#how">How it works</a>
+          <a href="#locations">Locations</a>
+        </div>
+        <a class="button button-primary" href="mailto:hello@helifrozenyogurt.com?subject=Heli%20location%20inquiry&body=Hi%20Heli%2C%0A%0AI%27d%20like%20to%20explore%20a%20frozen%20yogurt%20machine%20placement.%0A%0AProperty%20name%3A%0AAddress%3A%0AType%20of%20location%3A%0AEstimated%20foot%20traffic%3A%0ABest%20contact%3A%0A%0AThank%20you!">Get info</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="page-shell hero-grid">
+        <div>
+          <div class="eyebrow"><span class="eyebrow-dot"></span> Now placing in select Miami locations</div>
+          <h1>Premium frozen yogurt, without adding a food-service operation.</h1>
+          <p class="hero-copy">Heli is a self-serve Greek frozen yogurt experience for modern buildings, hotels, campuses, offices, gyms, and high-traffic spaces. We place, operate, stock, and support the machine, so your location can offer a polished amenity with minimal lift.</p>
+          <div class="hero-actions">
+            <a class="button button-berry" href="mailto:hello@helifrozenyogurt.com?subject=Heli%20location%20inquiry&body=Hi%20Heli%2C%0A%0AI%27d%20like%20to%20explore%20a%20frozen%20yogurt%20machine%20placement.%0A%0AProperty%20name%3A%0AAddress%3A%0AType%20of%20location%3A%0AEstimated%20foot%20traffic%3A%0ABest%20contact%3A%0A%0AThank%20you!">Bring Heli to your location</a>
+            <a class="button button-secondary" href="#how">See how it works</a>
+          </div>
+          <div class="hero-proof" aria-label="Heli highlights">
+            <span class="proof-chip">Cashless experience</span>
+            <span class="proof-chip">Custom branding options</span>
+            <span class="proof-chip">Heli-managed service</span>
+          </div>
+        </div>
+
+        <div class="experience-card" aria-label="Illustration of the Heli machine and frozen yogurt experience">
+          <div class="mini-logo-card">
+            <img src="assets/heli-logo.png" alt="Heli" />
+            <span>Greek · Frozen · Yogurt</span>
+          </div>
+          <div class="machine-scene">
+            <div class="machine" aria-hidden="true">
+              <div class="machine-top"><img src="assets/heli-logo.png" alt="" /></div>
+              <div class="machine-window"></div>
+              <div class="pay-panel"></div>
+              <div class="machine-base"></div>
+            </div>
+            <div class="cup" aria-hidden="true">
+              <div class="swirl"></div>
+              <div class="bowl"></div>
+              <div class="label">h</div>
+            </div>
+          </div>
+          <div class="floating-note note-one">Guest-ready</div>
+          <div class="floating-note note-two">Small footprint</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="why">
+      <div class="page-shell section-card">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">Why location teams like it</p>
+            <h2>A memorable amenity that feels boutique.</h2>
+          </div>
+          <p class="section-intro">Heli gives guests, residents, students, and visitors a quick treat that feels elevated, photogenic, and easy to use. For the property team, the goal is simple: add delight without adding complexity.</p>
+        </div>
+        <div class="cards-grid">
+          <article class="feature-card">
+            <div class="icon-badge">01</div>
+            <h3>Low-lift operation</h3>
+            <p>Heli handles the machine, product, payment setup, service visits, cleaning routines, and operational support.</p>
+          </article>
+          <article class="feature-card">
+            <div class="icon-badge">02</div>
+            <h3>Premium experience</h3>
+            <p>A clean, branded, self-serve frozen yogurt moment that fits shared spaces better than a traditional food counter.</p>
+          </article>
+          <article class="feature-card">
+            <div class="icon-badge">03</div>
+            <h3>Flexible placement</h3>
+            <p>Use it as a resident perk, hotel amenity, campus treat, employee benefit, or revenue-share opportunity.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="how">
+      <div class="page-shell split">
+        <div class="blue-panel">
+          <p class="section-kicker" style="color: rgba(255,255,255,.74);">How it works</p>
+          <h2>Simple for the property. Fun for everyone else.</h2>
+          <p>Heli is designed to make placement feel straightforward from the first conversation to launch day.</p>
+          <ul class="check-list">
+            <li>We review the location, visibility, power access, service access, and foot traffic fit.</li>
+            <li>We coordinate machine placement, launch support, and optional branded visuals for the location.</li>
+            <li>Guests use the machine directly, with cashless payment and simple instructions.</li>
+            <li>Heli manages the ongoing service plan, product refills, and operational support.</li>
+          </ul>
+        </div>
+        <div class="steps-grid">
+          <article class="step-card">
+            <span class="step-number">1</span>
+            <h3>Fit check</h3>
+            <p>We look at the space, traffic pattern, audience, power access, and whether the machine can be serviced properly.</p>
+          </article>
+          <article class="step-card">
+            <span class="step-number">2</span>
+            <h3>Placement plan</h3>
+            <p>We align on the best location, partnership structure, launch timing, and any custom branding opportunities.</p>
+          </article>
+          <article class="step-card">
+            <span class="step-number">3</span>
+            <h3>Launch moment</h3>
+            <p>We can support your launch with signage, QR codes, promo codes, and clear guest instructions.</p>
+          </article>
+          <article class="step-card">
+            <span class="step-number">4</span>
+            <h3>Ongoing support</h3>
+            <p>We keep the experience running with regular refills, cleaning routines, maintenance coordination, and support.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="locations">
+      <div class="page-shell section-card">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">Best-fit locations</p>
+            <h2>Designed for places with built-in demand.</h2>
+          </div>
+          <p class="section-intro">Heli works best where people already spend time, pass by often, and appreciate a convenient treat that feels fresh and premium.</p>
+        </div>
+        <div class="places-grid">
+          <article class="place-card">
+            <strong>Residential</strong>
+            <p>Apartment communities, student housing, and amenity floors.</p>
+          </article>
+          <article class="place-card">
+            <strong>Hotels</strong>
+            <p>Lobbies, pool decks, lounges, and guest amenity areas.</p>
+          </article>
+          <article class="place-card">
+            <strong>Campuses</strong>
+            <p>Universities, colleges, libraries, and student hubs.</p>
+          </article>
+          <article class="place-card">
+            <strong>Wellness</strong>
+            <p>Gyms, studios, sports clubs, and recovery spaces.</p>
+          </article>
+          <article class="place-card">
+            <strong>Offices</strong>
+            <p>Corporate buildings, coworking spaces, and break areas.</p>
+          </article>
+          <article class="place-card">
+            <strong>Retail</strong>
+            <p>Malls, food halls, entertainment venues, and high-traffic plazas.</p>
+          </article>
+        </div>
+        <div class="quote-strip">
+          <p>Premium vending, without the vending feel.</p>
+          <span>Best fit: visible indoor area, standard 120V power, service access, and enough daily traffic to support demand.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="contact">
+      <div class="page-shell cta-card">
+        <div class="cta-content">
+          <p class="section-kicker">Explore a placement</p>
+          <h2>Want Heli at your property?</h2>
+          <p>Send us the location details and we will review whether it is a good fit. We can also discuss branded machine vinyl, resident or guest promotions, and the best partnership structure for your space.</p>
+          <div class="hero-actions">
+            <a class="button button-berry" href="mailto:hello@helifrozenyogurt.com?subject=Heli%20location%20inquiry&body=Hi%20Heli%2C%0A%0AI%27d%20like%20to%20explore%20a%20frozen%20yogurt%20machine%20placement.%0A%0AProperty%20name%3A%0AAddress%3A%0AType%20of%20location%3A%0AEstimated%20foot%20traffic%3A%0ABest%20contact%3A%0A%0AThank%20you!">Email hello@helifrozenyogurt.com</a>
+          </div>
+        </div>
+        <aside class="inquiry-card">
+          <h3>Helpful details to include</h3>
+          <ul class="inquiry-list">
+            <li>Property name and address</li>
+            <li>Type of location and audience</li>
+            <li>Estimated daily foot traffic</li>
+            <li>Potential placement area</li>
+            <li>Best contact person</li>
+          </ul>
+          <a class="button button-primary" href="mailto:hello@helifrozenyogurt.com?subject=Heli%20location%20inquiry&body=Hi%20Heli%2C%0A%0AI%27d%20like%20to%20explore%20a%20frozen%20yogurt%20machine%20placement.%0A%0AProperty%20name%3A%0AAddress%3A%0AType%20of%20location%3A%0AEstimated%20foot%20traffic%3A%0ABest%20contact%3A%0A%0AThank%20you!">Start the conversation</a>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="page-shell footer-inner">
+      <img class="footer-logo" src="assets/heli-logo.png" alt="Heli" />
+      <span>Greek · Frozen · Yogurt</span>
+      <a href="mailto:hello@helifrozenyogurt.com">hello@helifrozenyogurt.com</a>
+    </div>
+  </footer>
 </body>
 </html>
