@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Visitas · Heli Frozen Yogurt</title>
+<meta name="theme-color" content="#1B3A6B" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #173867;
+  --navy-deep: #0f284d;
+  --blue: #c8d8e8;
+  --blue-soft: #e9f3fc;
+  --cream: #fbf7ef;
+  --cream-strong: #f4eadc;
+  --berry: #b87083;
+  --berry-dark: #8d4e62;
+  --ink: #1c2d45;
+  --muted: #637188;
+  --white: #ffffff;
+  --shadow: 0 24px 70px rgba(23, 56, 103, 0.15);
+  --radius-lg: 34px;
+  --radius-md: 22px;
+  --radius-sm: 16px;
+  --max: 760px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: "Montserrat", system-ui, -apple-system, sans-serif;
+  background-color: var(--blue-soft);
+  background-image: linear-gradient(rgba(255,255,255,.34), rgba(255,255,255,.34)), url("assets/heli-stripes.png");
+  background-size: 640px auto;
+  background-attachment: fixed;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+.page-shell { width: min(var(--max), calc(100% - 38px)); margin: 0 auto; }
+.nav-wrap { position: sticky; top: 14px; z-index: 20; padding: 14px 0 0; }
+.nav {
+  display: flex; align-items: center; justify-content: space-between; gap: 18px;
+  border: 1px solid rgba(23,56,103,.11); border-radius: 999px; padding: 10px 18px;
+  background: rgba(251,247,239,.88); box-shadow: 0 18px 50px rgba(23,56,103,.11);
+  backdrop-filter: blur(16px);
+}
+.brand-lockup { display: flex; align-items: center; gap: 12px; }
+.brand-logo { width: 100px; height: auto; }
+.brand-subtext {
+  display: block; font-size: 9px; letter-spacing: .22em; font-weight: 600;
+  color: var(--navy); text-transform: uppercase; margin-top: -3px; white-space: nowrap;
+}
+.nav-label { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+main { padding: 48px 0 80px; }
+.page-title { margin-bottom: 32px; }
+.page-kicker { color: var(--berry-dark); font-size: 11px; font-weight: 800; letter-spacing: .15em; text-transform: uppercase; margin: 0 0 8px; }
+h1 { font-family: "Cormorant Garamond", Georgia, serif; font-size: clamp(38px,6vw,58px); color: var(--navy); line-height: .96; margin: 0 0 10px; font-weight: 600; letter-spacing: -.03em; }
+.page-subtitle { color: var(--muted); font-size: 15px; margin: 0; }
+.card { border-radius: var(--radius-lg); background: rgba(251,247,239,.86); border: 1px solid rgba(23,56,103,.11); box-shadow: var(--shadow); padding: 36px; margin-bottom: 24px; }
+.card-title { font-family: "Cormorant Garamond", Georgia, serif; font-size: 28px; color: var(--navy); margin: 0 0 26px; font-weight: 600; letter-spacing: -.02em; }
+.field { margin-bottom: 24px; }
+.field > label { display: block; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--navy); margin-bottom: 8px; }
+.field input[type="date"] {
+  width: 100%; padding: 13px 16px; border: 1px solid rgba(23,56,103,.2);
+  border-radius: var(--radius-sm); background: rgba(255,255,255,.8);
+  font-family: "Montserrat", sans-serif; font-size: 14px; color: var(--ink);
+  transition: border-color .2s, box-shadow .2s; outline: none; appearance: none;
+}
+.field input[type="date"]:focus { border-color: var(--navy); box-shadow: 0 0 0 3px rgba(23,56,103,.1); }
+.checks-label { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--navy); margin-bottom: 12px; display: block; }
+.check-item { padding: 16px 18px; border: 1px solid rgba(23,56,103,.12); border-radius: var(--radius-sm); background: rgba(255,255,255,.6); margin-bottom: 10px; transition: background .2s, border-color .2s; }
+.check-item.active { background: rgba(23,56,103,.05); border-color: rgba(23,56,103,.25); }
+.check-row { display: flex; align-items: center; gap: 12px; cursor: pointer; user-select: none; }
+.check-input { width: 18px; height: 18px; accent-color: var(--navy); cursor: pointer; flex-shrink: 0; }
+.check-text { font-size: 14px; font-weight: 500; color: var(--ink); }
+.sub-field { display: none; margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(23,56,103,.1); }
+.sub-field.visible { display: block; }
+.sub-field label { display: block; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 7px; }
+.sub-field input[type="text"], .sub-field textarea { width: 100%; padding: 11px 14px; border: 1px solid rgba(23,56,103,.2); border-radius: 12px; background: rgba(255,255,255,.9); font-family: "Montserrat", sans-serif; font-size: 14px; color: var(--ink); outline: none; transition: border-color .2s, box-shadow .2s; }
+.sub-field input[type="text"]:focus, .sub-field textarea:focus { border-color: var(--navy); box-shadow: 0 0 0 3px rgba(23,56,103,.1); }
+.sub-field textarea { resize: vertical; min-height: 80px; }
+.error-msg { display: none; color: var(--berry-dark); font-size: 12px; font-weight: 600; margin-top: 8px; padding: 9px 13px; background: rgba(184,112,131,.1); border-radius: 10px; border: 1px solid rgba(184,112,131,.22); }
+.error-msg.visible { display: block; }
+.btn-submit { display: flex; align-items: center; justify-content: center; width: 100%; padding: 15px 24px; margin-top: 12px; border: none; border-radius: 999px; background: var(--navy); color: white; font-family: "Montserrat", sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; cursor: pointer; box-shadow: 0 14px 34px rgba(23,56,103,.22); transition: transform .2s, background .2s; }
+.btn-submit:hover { transform: translateY(-2px); background: var(--navy-deep); }
+.toast { display: none; align-items: center; gap: 12px; padding: 16px 20px; border-radius: var(--radius-sm); background: rgba(23,56,103,.07); border: 1px solid rgba(23,56,103,.15); color: var(--navy); font-size: 14px; font-weight: 600; margin-top: 16px; }
+.toast.visible { display: flex; }
+.toast-icon { width: 32px; height: 32px; border-radius: 50%; background: var(--navy); color: white; display: grid; place-items: center; font-size: 15px; flex-shrink: 0; }
+.section-label { font-size: 11px; font-weight: 800; letter-spacing: .15em; text-transform: uppercase; color: var(--berry-dark); margin: 0 0 16px; }
+.visit-card { padding: 20px 22px; border: 1px solid rgba(23,56,103,.11); border-radius: var(--radius-md); background: rgba(255,255,255,.68); margin-bottom: 12px; }
+.visit-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.visit-fecha { font-family: "Cormorant Garamond", Georgia, serif; font-size: 22px; font-weight: 600; color: var(--navy); letter-spacing: -.01em; }
+.visit-tag { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 5px 12px; border-radius: 999px; background: rgba(23,56,103,.08); color: var(--navy); }
+.visit-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; padding: 6px 12px; border-radius: 999px; background: rgba(200,216,232,.5); color: var(--ink); border: 1px solid rgba(23,56,103,.1); }
+.chip.problema { background: rgba(184,112,131,.12); color: var(--berry-dark); border-color: rgba(184,112,131,.2); }
+.visit-detail { font-size: 12px; color: var(--muted); margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(23,56,103,.08); font-style: italic; }
+.empty-state { text-align: center; padding: 36px 0; color: var(--muted); font-size: 14px; }
+.empty-icon { font-size: 38px; margin-bottom: 10px; }
+footer { padding: 34px 0 50px; color: var(--navy); }
+.footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 18px; border-top: 1px solid rgba(23,56,103,.13); padding-top: 22px; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; font-weight: 600; }
+.footer-logo { width: 72px; }
+@media (max-width: 580px) {
+  .card { padding: 24px 18px; border-radius: 24px; }
+  h1 { font-size: 38px; }
+  .brand-subtext { display: none; }
+  .footer-inner { flex-direction: column; align-items: flex-start; gap: 10px; }
+}
+</style>
+</head>
+<body>
+<header class="nav-wrap">
+  <div class="page-shell">
+    <nav class="nav" aria-label="Navegacion">
+      <a class="brand-lockup" href="index.html" aria-label="Heli Frozen Yogurt">
+        <div>
+          <img class="brand-logo" src="assets/heli-logo.png" alt="Heli" />
+          <span class="brand-subtext">Greek - Frozen - Yogurt</span>
+        </div>
+      </a>
+      <span class="nav-label">Portal de Visitas</span>
+    </nav>
+  </div>
+</header>
+<main>
+  <div class="page-shell">
+    <div class="page-title" style="padding-top:44px;">
+      <p class="page-kicker">Heli Ops</p>
+      <h1>Registrar visita</h1>
+      <p class="page-subtitle">Ingresa los detalles de tu visita a la maquina.</p>
+    </div>
+    <div class="card">
+      <h2 class="card-title">Nueva visita</h2>
+      <form id="visitForm" novalidate>
+        <div class="field">
+          <label for="fecha">Fecha</label>
+          <input type="date" id="fecha" name="fecha" required />
+        </div>
+        <div class="field">
+          <span class="checks-label">Que hiciste en esta visita?</span>
+          <div class="check-item" id="item-topping">
+            <label class="check-row">
+              <input type="checkbox" class="check-input" id="chk-topping" />
+              <span class="check-text">Rellenar topping</span>
+            </label>
+            <div class="sub-field" id="sub-topping">
+              <label for="cual-topping">Cual topping?</label>
+              <input type="text" id="cual-topping" placeholder="Ej: granola, mango, arandanos" />
+            </div>
+          </div>
+          <div class="check-item" id="item-mix">
+            <label class="check-row">
+              <input type="checkbox" class="check-input" id="chk-mix" />
+              <span class="check-text">Rellenar mix</span>
+            </label>
+          </div>
+          <div class="check-item" id="item-problema">
+            <label class="check-row">
+              <input type="checkbox" class="check-input" id="chk-problema" />
+              <span class="check-text">Arreglar problema</span>
+            </label>
+            <div class="sub-field" id="sub-problema">
+              <label for="desc-problema">Describe el problema</label>
+              <textarea id="desc-problema" placeholder="Que problema encontraste y como lo resolviste?"></textarea>
+            </div>
+          </div>
+          <div class="error-msg" id="err-actividades">Selecciona al menos una actividad.</div>
+          <div class="error-msg" id="err-topping">Indica cual topping rellenaste.</div>
+          <div class="error-msg" id="err-problema">Describe el problema que arreglaste.</div>
+        </div>
+        <button type="submit" class="btn-submit">Registrar visita</button>
+        <div class="toast" id="toast-success">
+          <div class="toast-icon">OK</div>
+          <span>Visita registrada exitosamente!</span>
+        </div>
+      </form>
+    </div>
+    <div class="card" id="historyCard">
+      <h2 class="card-title">Ultimas visitas</h2>
+      <p class="section-label">Solo las 3 mas recientes - solo lectura</p>
+      <div id="historyList"></div>
+    </div>
+  </div>
+</main>
+<footer>
+  <div class="page-shell footer-inner">
+    <img class="footer-logo" src="assets/heli-logo.png" alt="Heli" />
+    <span>Greek - Frozen - Yogurt</span>
+    <a href="mailto:hello@helifrozenyogurt.com">hello@helifrozenyogurt.com</a>
+  </div>
+</footer>
+<script>
+const STORAGE_KEY = 'heli_visitas_v1';
+function getVisitas() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
+  catch { return []; }
+}
+function saveVisitas(arr) { localStorage.setItem(STORAGE_KEY, JSON.stringify(arr)); }
+function formatFecha(dateStr) {
+  if (!dateStr) return '';
+  const [y, m, d] = dateStr.split('-');
+  const months = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
+  return parseInt(d) + ' ' + months[parseInt(m)-1] + ' ' + y;
+}
+const fechaInput = document.getElementById('fecha');
+fechaInput.value = new Date().toISOString().split('T')[0];
+function bindToggle(chkId, subId, itemId) {
+  const chk = document.getElementById(chkId);
+  const sub = document.getElementById(subId);
+  const item = document.getElementById(itemId);
+  chk.addEventListener('change', function() {
+    sub.classList.toggle('visible', chk.checked);
+    item.classList.toggle('active', chk.checked);
+    if (!chk.checked) sub.querySelectorAll('input,textarea').forEach(function(el){ el.value=''; });
+  });
+}
+bindToggle('chk-topping','sub-topping','item-topping');
+bindToggle('chk-problema','sub-problema','item-problema');
+function renderHistory() {
+  const list = document.getElementById('historyList');
+  const visitas = getVisitas().slice(0,3);
+  if (visitas.length === 0) {
+    list.innerHTML = '<div class="empty-state"><div class="empty-icon">🍦</div><p>No hay visitas registradas aun.</p></div>';
+    return;
+  }
+  list.innerHTML = visitas.map(function(v, i) {
+    const chips = [];
+    const details = [];
+    if (v.rellenarTopping) chips.push('<span class="chip">Topping' + (v.cualTopping ? ': ' + v.cualTopping : '') + '</span>');
+    if (v.rellenarMix) chips.push('<span class="chip">Mix</span>');
+    if (v.arreglarProblema) {
+      chips.push('<span class="chip problema">Problema</span>');
+      if (v.descripcionProblema) details.push('<div class="visit-detail">' + v.descripcionProblema + '</div>');
+    }
+    const badge = i === 0 ? '<span class="visit-tag">Mas reciente</span>' : '';
+    return '<div class="visit-card"><div class="visit-header"><span class="visit-fecha">' + formatFecha(v.fecha) + '</span>' + badge + '</div><div class="visit-chips">' + chips.join('') + '</div>' + details.join('') + '</div>';
+  }).join('');
+}
+document.getElementById('visitForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  document.querySelectorAll('.error-msg').forEach(function(el){ el.classList.remove('visible'); });
+  document.getElementById('toast-success').classList.remove('visible');
+  const fecha = fechaInput.value;
+  const chkTopping = document.getElementById('chk-topping').checked;
+  const chkMix = document.getElementById('chk-mix').checked;
+  const chkProblema = document.getElementById('chk-problema').checked;
+  const cualTopping = document.getElementById('cual-topping').value.trim();
+  const descProblema = document.getElementById('desc-problema').value.trim();
+  let hasError = false;
+  if (!chkTopping && !chkMix && !chkProblema) { document.getElementById('err-actividades').classList.add('visible'); hasError = true; }
+  if (chkTopping && !cualTopping) { document.getElementById('err-topping').classList.add('visible'); hasError = true; }
+  if (chkProblema && !descProblema) { document.getElementById('err-problema').classList.add('visible'); hasError = true; }
+  if (hasError) return;
+  const visita = { id: Date.now().toString(), fecha: fecha, rellenarTopping: chkTopping, cualTopping: chkTopping ? cualTopping : '', rellenarMix: chkMix, arreglarProblema: chkProblema, descripcionProblema: chkProblema ? descProblema : '', timestamp: Date.now() };
+  const visitas = getVisitas();
+  visitas.unshift(visita);
+  saveVisitas(visitas);
+  document.getElementById('chk-topping').checked = false;
+  document.getElementById('chk-mix').checked = false;
+  document.getElementById('chk-problema').checked = false;
+  document.getElementById('cual-topping').value = '';
+  document.getElementById('desc-problema').value = '';
+  document.getElementById('sub-topping').classList.remove('visible');
+  document.getElementById('sub-problema').classList.remove('visible');
+  document.getElementById('item-topping').classList.remove('active');
+  document.getElementById('item-problema').classList.remove('active');
+  fechaInput.value = new Date().toISOString().split('T')[0];
+  const toast = document.getElementById('toast-success');
+  toast.classList.add('visible');
+  setTimeout(function(){ toast.classList.remove('visible'); }, 3500);
+  renderHistory();
+  setTimeout(function(){ document.getElementById('historyCard').scrollIntoView({behavior:'smooth',block:'start'}); }, 400);
+});
+renderHistory();
+</script>
+</body>
+</html>
